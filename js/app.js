@@ -1,52 +1,29 @@
 
-
-let tr = document.getElementById('tr')
-let corriente = document.querySelector('.td2')
 let showTable = document.querySelector('#data')
 let loading = document.querySelector('.loading')
-
 let users = []
+
 window.addEventListener("DOMContentLoaded", async ()=>{
-   
- loading.innerHTML = '<h1 class="load">Loading...</h1>' 
+
+ loading.innerHTML = '<h1 class="load">Loading...</h1>';
 
  setTimeout(() => {
      loading.style.display = 'none'
  }, 500);
 
     // load api
-const data = await loadData()
+const data = await loadData();
   
-
 users = data
 
-// dis function is only to see all id 
+// this function is only to see all id 
 const id = users.reduce((total,id)=> {
     return Array.from (new Set ([...total,id.customer_id]))
 }, [])
 
-console.log(id)
+// console.log(id)
 
-
-// let prueba = [
-//     {name:"yessi", num:"$10.12"},
-//     {name:"Alejandra", num:"$20.34"},
-//     {name:"Rocio", num:"$30.10"},
-//     {name:"more", num:"$10.20"}
-// ]
-
-// let cor = "$123.6"
-// console.log(parseInt(cor));
-// console.log(parseFloat(cor.slice(1)))
-// const sumarNu = prueba.reduce((total,id)=> total + parseFloat(id.num.slice(1)), 0) 
-// console.log(sumarNu)
-
-
-
-
-
-
-// pasamos la api como parametro a las funciones
+// api as parameter in the functions
 renderUserOne(users)
 renderUserTwo(users)
 renderUserThree(users)
@@ -57,23 +34,21 @@ renderUserSeven(users)
 renderUserEight(users)
 renderUserNine(users)
 renderUserTen(users)
+
  });
 
 
 // GET api
 async function loadData (){
     try {
-
      const response = await fetch("https://quietstreamfinancial.github.io/eng-recruiting/transactions.json")
 
      return await response.json();
   
-
     } catch (err) {
         console.log("the error is", err)
     }
  }
-
 
 
  
@@ -107,7 +82,9 @@ async function loadData (){
     `
  }
 
-// two user
+//  the next funcions is the same, just change the id to get the especify user
+
+// user two
  function renderUserTwo(users){
     let usuaria = users.filter(user => user.customer_id === 61)
     let accountSave = usuaria.filter(user => user.account_type === 'savings')
@@ -127,7 +104,7 @@ async function loadData (){
 
 
 
- // three user
+ //user three 
  function renderUserThree(users){
     let usuaria = users.filter(user => user.customer_id === 21178)
     let accountSave = usuaria.filter(user => user.account_type === 'savings')
