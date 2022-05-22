@@ -14,20 +14,53 @@ window.addEventListener("DOMContentLoaded", async ()=>{
      loading.style.display = 'none'
  }, 500);
 
-    // cargar api
+    // load api
 const data = await loadData()
   
 
 users = data
 
-// pasamos la api como parametro a las funciones
-renderSaveAccount(users)
-renderCurrentAccount(users)
+// dis function is only to see all id 
+const id = users.reduce((total,id)=> {
+    return Array.from (new Set ([...total,id.customer_id]))
+}, [])
 
+console.log(id)
+
+
+// let prueba = [
+//     {name:"yessi", num:"$10.12"},
+//     {name:"Alejandra", num:"$20.34"},
+//     {name:"Rocio", num:"$30.10"},
+//     {name:"more", num:"$10.20"}
+// ]
+
+// let cor = "$123.6"
+// console.log(parseInt(cor));
+// console.log(parseFloat(cor.slice(1)))
+// const sumarNu = prueba.reduce((total,id)=> total + parseFloat(id.num.slice(1)), 0) 
+// console.log(sumarNu)
+
+
+
+
+
+
+// pasamos la api como parametro a las funciones
+renderUserOne(users)
+renderUserTwo(users)
+renderUserThree(users)
+renderUserFour(users)
+renderUserFive(users)
+renderUserSix(users)
+renderUserSeven(users)
+renderUserEight(users)
+renderUserNine(users)
+renderUserTen(users)
  });
 
 
-// Petion api
+// GET api
 async function loadData (){
     try {
 
@@ -45,38 +78,205 @@ async function loadData (){
 
  
 // RENDER cuentas ahorro
- function renderSaveAccount(users){
- let savings = users.filter(users => users.account_type === 'savings')
-    savings.forEach((user, index) => {
+ function renderUserOne(users){
+    //  filter id
+    let usuaria = users.filter(user => user.customer_id === 70281)
    
-    showTable.innerHTML +=`
+    // filter savins account
+    let accountSave = usuaria.filter(user => user.account_type === 'savings')
+    // add all savings accounts
+    const totalAccountSave = accountSave.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2) 
+
+    // filter currentAccount
+    let currentAccount = usuaria.filter(user => user.account_type === 'checking')
+   
+    // add all cheking accounts
+    const totalCururrentAccount = currentAccount.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+
+     
+// add total of all accounts
+    const totalUserAccount = usuaria.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+
+        showTable.innerHTML +=`
         <tr>
-            <td>${user.customer_name}</td>
-            <td>${user.transaction_amount}</td>
-            <td>$0</td>
-            <td>${user.transaction_amount}</td>
+            <td>${usuaria[0].customer_name}</td>
+            <td>$${totalAccountSave}</td>
+            <td>$${totalCururrentAccount}</td>
+            <td>$${totalUserAccount}</td>
         </tr>
     `
-    
-//  console.log(index)
- });
+ }
 
+// two user
+ function renderUserTwo(users){
+    let usuaria = users.filter(user => user.customer_id === 61)
+    let accountSave = usuaria.filter(user => user.account_type === 'savings')
+    const totalAccountSave = accountSave.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2) 
+    let currentAccount = usuaria.filter(user => user.account_type === 'checking')
+    const totalCururrentAccount = currentAccount.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+    const totalUserAccount = usuaria.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+        showTable.innerHTML +=`
+        <tr>
+            <td>${usuaria[0].customer_name}</td>
+            <td>$${totalAccountSave}</td>
+            <td>$${totalCururrentAccount}</td>
+            <td>$${totalUserAccount}</td>
+        </tr>
+    `
  }
 
 
 
-// RENDER  cuentas corrientes
- function renderCurrentAccount(users){
-    let checking = users.filter(users => users.account_type === 'checking' )
-    checking.forEach((user,index) => {
-       showTable.innerHTML +=`
-           <tr>
-               <td>${user.customer_name}</td>
-               <td>$0</td>
-                 <td>${user.transaction_amount}</td>
-                 <td>${user.transaction_amount}</td>
-           </tr>
-       ` 
-    });
-   
-}
+ // three user
+ function renderUserThree(users){
+    let usuaria = users.filter(user => user.customer_id === 21178)
+    let accountSave = usuaria.filter(user => user.account_type === 'savings')
+    const totalAccountSave = accountSave.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2) 
+    let currentAccount = usuaria.filter(user => user.account_type === 'checking')
+    const totalCururrentAccount = currentAccount.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+    const totalUserAccount = usuaria.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+        showTable.innerHTML +=`
+        <tr>
+            <td>${usuaria[0].customer_name}</td>
+            <td>$${totalAccountSave}</td>
+            <td>$${totalCururrentAccount}</td>
+            <td>$${totalUserAccount}</td>
+        </tr>
+    `
+ }
+
+
+ // user four
+ function renderUserFour(users){
+    let usuaria = users.filter(user => user.customer_id === 138)
+    let accountSave = usuaria.filter(user => user.account_type === 'savings')
+    const totalAccountSave = accountSave.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2) 
+    let currentAccount = usuaria.filter(user => user.account_type === 'checking')
+    const totalCururrentAccount = currentAccount.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+    const totalUserAccount = usuaria.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+        showTable.innerHTML +=`
+        <tr>
+            <td>${usuaria[0].customer_name}</td>
+            <td>$${totalAccountSave}</td>
+            <td>$${totalCururrentAccount}</td>
+            <td>$${totalUserAccount}</td>
+        </tr>
+    `
+ }
+
+
+
+ // user five
+ function renderUserFive(users){
+    let usuaria = users.filter(user => user.customer_id === 2)
+    let accountSave = usuaria.filter(user => user.account_type === 'savings')
+    const totalAccountSave = accountSave.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2) 
+    let currentAccount = usuaria.filter(user => user.account_type === 'checking')
+    const totalCururrentAccount = currentAccount.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+    const totalUserAccount = usuaria.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+        showTable.innerHTML +=`
+        <tr>
+            <td>${usuaria[0].customer_name}</td>
+            <td>$${totalAccountSave}</td>
+            <td>$${totalCururrentAccount}</td>
+            <td>$${totalUserAccount}</td>
+        </tr>
+    `
+ }
+
+
+ // user six
+ function renderUserSix(users){
+    let usuaria = users.filter(user => user.customer_id === 9)
+    let accountSave = usuaria.filter(user => user.account_type === 'savings')
+    const totalAccountSave = accountSave.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2) 
+    let currentAccount = usuaria.filter(user => user.account_type === 'checking')
+    const totalCururrentAccount = currentAccount.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+    const totalUserAccount = usuaria.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+        showTable.innerHTML +=`
+        <tr>
+            <td>${usuaria[0].customer_name}</td>
+            <td>$${totalAccountSave}</td>
+            <td>$${totalCururrentAccount}</td>
+            <td>$${totalUserAccount}</td>
+        </tr>
+    `
+ }
+
+
+ // user seven
+ function renderUserSeven(users){
+    let usuaria = users.filter(user => user.customer_id === 112)
+    let accountSave = usuaria.filter(user => user.account_type === 'savings')
+    const totalAccountSave = accountSave.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2) 
+    let currentAccount = usuaria.filter(user => user.account_type === 'checking')
+    const totalCururrentAccount = currentAccount.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+    const totalUserAccount = usuaria.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+        showTable.innerHTML +=`
+        <tr>
+            <td>${usuaria[0].customer_name}</td>
+            <td>$${totalAccountSave}</td>
+            <td>$${totalCururrentAccount}</td>
+            <td>$${totalUserAccount}</td>
+        </tr>
+    `
+ }
+
+
+  // user eight
+  function renderUserEight(users){
+    let usuaria = users.filter(user => user.customer_id === 9129)
+    let accountSave = usuaria.filter(user => user.account_type === 'savings')
+    const totalAccountSave = accountSave.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2) 
+    let currentAccount = usuaria.filter(user => user.account_type === 'checking')
+    const totalCururrentAccount = currentAccount.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+    const totalUserAccount = usuaria.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+        showTable.innerHTML +=`
+        <tr>
+            <td>${usuaria[0].customer_name}</td>
+            <td>$${totalAccountSave}</td>
+            <td>$${totalCururrentAccount}</td>
+            <td>$${totalUserAccount}</td>
+        </tr>
+    `
+ }
+
+
+ // user nice
+ function renderUserNine(users){
+    let usuaria = users.filter(user => user.customer_id ===  1293)
+    let accountSave = usuaria.filter(user => user.account_type === 'savings')
+    const totalAccountSave = accountSave.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2) 
+    let currentAccount = usuaria.filter(user => user.account_type === 'checking')
+    const totalCururrentAccount = currentAccount.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+    const totalUserAccount = usuaria.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+        showTable.innerHTML +=`
+        <tr>
+            <td>${usuaria[0].customer_name}</td>
+            <td>$${totalAccountSave}</td>
+            <td>$${totalCururrentAccount}</td>
+            <td>$${totalUserAccount}</td>
+        </tr>
+    `
+ }
+
+
+
+ // user ten
+ function renderUserTen(users){
+    let usuaria = users.filter(user => user.customer_id ===  2295)
+    let accountSave = usuaria.filter(user => user.account_type === 'savings')
+    const totalAccountSave = accountSave.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2) 
+    let currentAccount = usuaria.filter(user => user.account_type === 'checking')
+    const totalCururrentAccount = currentAccount.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+    const totalUserAccount = usuaria.reduce((total,id)=> total + Number(id.transaction_amount.slice(1)), 0).toFixed(2)
+        showTable.innerHTML +=`
+        <tr>
+            <td>${usuaria[0].customer_name}</td>
+            <td>$${totalAccountSave}</td>
+            <td>$${totalCururrentAccount}</td>
+            <td>$${totalUserAccount}</td>
+        </tr>
+    `
+ }
+
